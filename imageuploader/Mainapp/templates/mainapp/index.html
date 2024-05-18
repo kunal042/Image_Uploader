@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+    <link rel="stylesheet" href="{%  static 'mainapp/css/bootstrap.min.css' %}">
+</head>
+<body>
+    
+    
+    <div class="container">
+        <div class="py-5 text-center bg-secondary text-white" >
+            <h1 class="mb-5" >Upload Image</h1>
+            <form action="" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{form}}
+                <input type="submit"  class="btn btn-danger" value="Upload">
+
+            </form>
+        </div>
+
+        <div class="row">
+            {% for x in img %}
+                <div class="col-sm-4">
+                    <div class="card m-2">
+                        <img src="{{x.photo.url}}" alt="" class="card-img-top" >
+                    </div>
+                    <div class="card-footer" >
+                        <small class="text-muted" >{{x.date}}</small>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <script src="{% static 'mainapp/js/bootstrap.min.js'  %}"></script>
+    <script src="{% static 'mainapp/js/jquery.min.js'  %}"></script>
+    <script src="{% static 'mainapp/js/popper.min.js'  %}"></script>
+</body>
+</html>
